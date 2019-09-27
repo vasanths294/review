@@ -1,0 +1,136 @@
+<!-- https://www.geeksforgeeks.org/jquery-addclass-with-examples/ -->
+
+
+<html> 
+
+<head> 
+	<meta charset="utf-8"> 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script> -->
+	
+	<title>addClass demo</title> 
+	<style> 
+		p { 
+			margin: 8px; 
+			font-size: 35px; 
+		} 
+		
+		.selected { 
+			
+			display: block; 
+			border: 2px solid green; 
+			width: 160px; 
+			height: 60px; 
+			background-color: lightgreen; 
+			margin: 3px;
+			
+			
+		} 
+		
+		.highlight { 
+			background: yellow; 
+			width: 330px; 
+			height: 130px;
+		} 
+
+.container {
+	display: flex;
+	justify-content: center;
+	/* border: 2px solid red; */
+}
+
+		.parent{ 
+			color: black;
+			/* border: 2px solid black; */
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			align-items: center;
+			/* padding-left: auto; 
+			padding-left: auto;	 */
+			
+		} 
+
+	</style> 
+		<script> 
+			$(document).ready(function(){
+
+			for( var i=0; i<10; i++)
+			{
+				// $(".selected").addClass("highlight"); 
+			  //$(".parent").addClass("selected");
+			var html = $('	<div class="selected">' + i + ' </div> ');
+			var $html=$(html);
+			$('.parent').append($html);
+			}
+
+			});
+		
+			  $(document).on("click",".selected", function() {  
+				  	  var pos = $(this).index()%2;
+					  console.log("selected",pos);
+
+					if(pos == 1){
+						var x = $(this).next()
+						$(this).next().remove()
+						console.log($(this).prev());
+						$(this).prev().after(x)
+
+					}
+
+						// $(this).next.innerHTML = $(this).innerHTML;
+						// console.log( $(this).next )
+
+
+					  
+					  $(".selected").removeClass("highlight");
+					  $(this).addClass("highlight");
+		  
+				});
+			  
+			</script> 
+
+		
+	<script> 
+		$(document).ready(function() { 
+
+			var width = $( ".container" ).width();
+				cols = Math.floor(width/170)
+				var pad = width%105;
+				console.log("pad2134567",cols);
+				
+				$(".parent").css({"width": cols*170});
+
+			$(window).resize(function() { 
+			var width = $( ".container" ).width();
+				// console.log(width);
+				// console.log("selected: ", $( ".selected" ).outerWidth());
+				cols = Math.floor(width/170)
+				console.log("cols",cols);
+				var pad = width%105;
+				console.log(pad);
+				// $(".parent").css({"padding-left": "20px"});
+
+				$(".parent").css({"width": cols*170});
+
+			}); 
+		}); 
+		
+
+	</script> 
+	
+</head> 
+
+<body> temp
+<div class="container"> 
+  <div class="parent">
+	
+	<!-- <p>GeeksforGeeks</p> 
+	<p>gfg</p> 
+	<p class="selected">CSE</p>  -->
+  </div>
+</div>
+  
+</body> 
+
+</html> 
